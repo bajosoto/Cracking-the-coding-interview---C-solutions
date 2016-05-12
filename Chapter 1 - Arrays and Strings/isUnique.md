@@ -8,6 +8,6 @@ Implement an algorithm to check if a string has all unique characters.
 - Check char by char and see if next char is equal to last
 
 **Idea 2:** time: O(n)  space: O(1)
-- Use a bitfield to count each char
+- Use a bitfield to count each char's frequency
 
 *8:56*
