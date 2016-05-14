@@ -2,7 +2,7 @@
 
 Given two strings, write a function to check if they are one edit away (erase, add, replace), or zero edits away.
 
-Example:
+Example:  
 pale, ple = true (erase)  
 pale, palle = true (add)  
 pale, pare = true (replace)  
