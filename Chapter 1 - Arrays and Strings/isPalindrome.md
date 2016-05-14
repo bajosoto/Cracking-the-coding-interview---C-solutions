@@ -3,7 +3,7 @@ Write a function to check if a string is a permutation of a palindrome.
 
 *22:40*
 
-**Brute force:* time & space: O(n!)
+**Brute force:** time & space: O(n!)
 - Calculate all possible permutations
 - Check if one is a palindrome
 
