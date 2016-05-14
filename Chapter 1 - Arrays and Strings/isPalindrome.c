@@ -18,7 +18,7 @@ int permutationIsPalindrome(char *str){
  			return 1;
  		else
  			return 0;				
- 	}
+ 	} 
 }
 
 int main(int argc, char *argv[]){
