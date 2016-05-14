@@ -7,7 +7,7 @@ int isUnique(char *str){
 	uint64_t bitField = 0;
 	int length = strlen(str);
 	int i;
-
+	
 	if(str != NULL){
 		for(i = 0; i < length; i++){
 			if(bitField & (1 << (str[i]- '0')))
