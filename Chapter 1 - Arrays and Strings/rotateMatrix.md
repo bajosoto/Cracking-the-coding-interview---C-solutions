@@ -9,7 +9,7 @@ b b b b     b b b    ->    d c b a     c b a
 c c c c     c c c    ->    d c b a     c b a  
 d d d d                    d c b q  
 ````
-**Idea 1:**
+**Idea 1:** time: O(n) space: O(1)
 - Iteratively rotate by layer
 - For each layer, perform 4 row/column swaps separately, for each element - 1 in the row/column
 - **Note:** I will solve this for chars instead of 4 bytes to be able to print a test in console. Substituting *char* for *uint32_t* will give the asked implementation.
