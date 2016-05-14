@@ -8,7 +8,7 @@ int isPermutation(char *str1, char *str2){
  	int freq[MAX_VALID_LETTERS] = {0};
  	int length1 = strlen(str1);
  	int length2 = strlen(str2);
- 	int i;	
+ 	int i;	 
  
 	if(str1 == NULL || str2 == NULL)
  		return 0;
