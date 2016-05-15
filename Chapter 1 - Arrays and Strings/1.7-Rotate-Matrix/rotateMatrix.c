@@ -68,5 +68,9 @@ int main(int argc, char *argv[]){
  	printMatrix(matrix, 5, 5);
  	char **rotatedMatrix = rotateMatrix((char **)matrix, 5, 5);
  	printMatrix(rotatedMatrix, 5, 5);
+ 	
+ 	for (i = 0; i < 5; i++)
+ 		free(matrix[i]);
+ 	free(matrix);
  	return 0;
 }
