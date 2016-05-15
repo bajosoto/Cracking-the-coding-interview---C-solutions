@@ -66,8 +66,9 @@ int compHelper(char *str, int count, char letter, int offset, int length){
 int main(int argc, char *argv[]){
  	if(argc < 2)
 		return -1;
- 	
+ 	char *compressed = strCompress(argv[1]);
  	printf("Original string: \t%s\n", argv[1]);
- 	printf("Compressed string: \t%s\n", strCompress(argv[1]));
+ 	printf("Compressed string: \t%s\n", compressed);
+ 	free(compressed);
  	return 0;
 }
