@@ -121,6 +121,11 @@ int main(int argc, char *argv[]){
  	matrix = zeroMatrix(matrix, 15, 15);
  	printMatrix(matrix, 15, 15);
 
+  	for(i = 0; i < 15; i++)
+ 		free(matrix[i]);
+ 	free(matrix);
+
+
  	return 0;
 }
 
