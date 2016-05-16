@@ -11,7 +11,7 @@ pale, rake = false (two replaces away)
 
 *7:46*
 
-**Idea one:** time: O(n), space: O(1)
+**Idea one:** time: O(n) space: O(1)
 - Check if strings are the same (else return false)
 - Check if strings are one char different length (else return false)
 - Check char by char, switching a flag on the first difference
