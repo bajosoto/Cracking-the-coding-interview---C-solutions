@@ -81,3 +81,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+CTCI.sublime-project
+
+CTCI.sublime-workspace
