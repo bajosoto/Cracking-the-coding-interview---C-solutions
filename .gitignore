@@ -31,6 +31,15 @@
 # Debug files
 *.dSYM/
 
+# Files without extension
+*
+!/**/
+!*.*
+
+# ...but include makefile
+!makefile
+!Makefile
+
 # =========================
 # Operating System Files
 # =========================
@@ -81,12 +90,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-# Files without extension
-*
-!/**/
-!*.*
-
-# ...but include makefile
-!makefile
-!Makefile
