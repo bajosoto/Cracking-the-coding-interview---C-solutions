@@ -85,7 +85,7 @@ $RECYCLE.BIN/
 # Files without extension
 *
 !/**/
-!*.*≈
+!*.*
 
 # ...but include makefile
 !makefile
