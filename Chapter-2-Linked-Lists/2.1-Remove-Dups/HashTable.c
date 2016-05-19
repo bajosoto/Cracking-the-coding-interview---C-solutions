@@ -1,16 +1,17 @@
 /* A very basic hash table implementation with no collision control*/
-
+#include <stdlib.h>
+#include <stdio.h>
 #include "HashTable.h"
 
 #define MAX_KEYS	30
 
-static int hashTable[MAX_KEYS];
+static char *hashTable[MAX_KEYS] = {NULL};
 
-int hashGet(int key){
+char *hashGet(int key){
  	return hashTable[key % MAX_KEYS];
 }
 
-void hashAdd(int key, int value){
+void hashAdd(int key, char *value){
  	hashTable[key % MAX_KEYS] = value;
 }
 

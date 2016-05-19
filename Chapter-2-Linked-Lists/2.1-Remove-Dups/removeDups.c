@@ -3,22 +3,37 @@
 #include "LinkedList.h"
 #include "HashTable.h"
 
+void removeDups(Node *head){
+ 	if(head == NULL)
+ 		return;
+ 	Node *index = head;
+ 	while(index != NULL){
+ 		if(hashGet(index->key) == NULL){
+ 			hashAdd(index->key, index->data);
+ 			index = index->next;
+ 		} 
+		else{
+ 			index = deleteNode(index, head);
+ 	 	}
+ 	}
+}
+
 int main(int argc, char *argv[]){
-	Node *head = NULL;
-	addNodeFirst(&head, "!");
-	addNodeFirst(&head, "World");
-	addNodeFirst(&head, "Hello");
- 	printList(head);
- 	deleteList(head);
- 	hashAdd(1, 2);
- 	hashAdd(3, 4);
- 	hashAdd(37, 9);
- 	printf("HashTable value at index %d is: %d\n", 37, hashGet(37));
- 	hashAdd(7, 7);
- 	printf("HashTable value at index %d is: %d\n", 37, hashGet(37));
- 	printf("HashTable value at index %d is: %d\n", 3, hashGet(3));
- 	hashClear(3);
- 	printf("HashTable value at index %d is: %d\n", 3, hashGet(3));
+	Node *listHead = NULL;
+	addNodeFirst(&listHead, "Dog",  1);
+	addNodeFirst(&listHead, "Cat",  2);
+	addNodeFirst(&listHead, "Moose",3);
+	addNodeFirst(&listHead, "Duck", 4);
+	addNodeFirst(&listHead, "Dog",  1);
+	addNodeFirst(&listHead, "Bird", 6);
+	addNodeFirst(&listHead, "Frog", 7);
+	addNodeFirst(&listHead, "Cat",  2);
+	addNodeFirst(&listHead, "Dog",  1);
+ 	printList(listHead);
+ 	printf("Removing duplicates...\n");
+ 	removeDups(listHead);
+ 	printList(listHead);
+ 	deleteList(&listHead);
 
  	return 0;
 }
