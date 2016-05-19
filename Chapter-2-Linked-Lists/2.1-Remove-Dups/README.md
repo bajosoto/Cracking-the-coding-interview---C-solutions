@@ -4,7 +4,7 @@ Write a function that deletes duplicate nodes in an **unsorted** linked list.
 
 *20:30*
 
-**Brute force:** time: O(n2) space: O(1)
+**Brute force:** time: O(n<sup>2</sup>) space: O(1)
 - For each element, traverse the linked list finding duplicates and delete them. 
 
 **Idea 1:** 
