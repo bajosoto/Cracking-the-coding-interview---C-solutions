@@ -13,11 +13,6 @@ Write a function that deletes duplicate nodes in an **unsorted** linked list.
     -Delete the node that was tried to be inserted.
 
 ````c
-#include "HashTable.h"
-#include "LinkedList.h"
-#include <stdio.h>
-#include <stdlib.h>
-
 void removeDups(Node *head){
     if(head == NULL)
         return;
