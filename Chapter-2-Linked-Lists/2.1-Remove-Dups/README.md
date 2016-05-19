@@ -7,7 +7,7 @@ Write a function that deletes duplicate nodes in an **unsorted** linked list.
 **Brute force:** time: O(n<sup>2</sup>) space: O(1)
 - For each element, traverse the linked list finding duplicates and delete them. 
 
-**Idea 1:** 
+**Idea 1:** time: O(n) space: O(n)
 - Run the linked list, adding each element to a hash table.
     - Whenever a value is inserted and collides with a previous one, it means a duplicate was found. 
     -Delete the node that was tried to be inserted.
@@ -28,3 +28,10 @@ void removeDups(Node *head){
 }
 ````
 *20:41*
+
+## Follow up
+
+What if no additional buffers are allowed?
+
+**Idea 2:**
+- Use brute force algorithm described above. (I did not implement it)
