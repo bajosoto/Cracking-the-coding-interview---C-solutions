@@ -12,7 +12,7 @@ Implement an algorithm to return the K<sup>th</sup> to last element of a singly 
 - Start 2 indexes at root
 - Traverse runner k positions
 - Traverse runner and lagger indexes until runner hits NULL
-- Returh the lagger index
+- Return the lagger index
 
 ````c
 Node_t *kthToLast(LinkedList_t *list, int k){
