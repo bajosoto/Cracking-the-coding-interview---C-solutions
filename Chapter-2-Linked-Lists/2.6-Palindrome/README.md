@@ -27,30 +27,32 @@ Implement a function to check if a linked list is a palindrome
 I'll implement idea 3.
 
 ````c
-#include "LinkedList.h"
-
 typedef struct palindrome{
     Node_t *next;
     int isPalindrome;
 }Palindrome_t;
 
+Palindrome_t isPalHelper(Node_t *head, int index, int isOdd);
+
 int isPalindrome(LinkedList_t *list){
     int length = getListLength(list);
-    int odd = length % 2;
+    int isOdd = length % 2;
 
     if(list == NULL)
-        return false;
+        return 0;
 
     Palindrome_t res = isPalHelper(list->head, (length + 1) / 2, isOdd);
-    return res->isPalindrome;
+    return res.isPalindrome;
 }
 
 Palindrome_t isPalHelper(Node_t *head, int index, int isOdd){
     Palindrome_t segment;
 
     // Return true for an empty list
-    if(head == NULL || index == 0)
-        return true;
+    if(head == NULL || index == 0){
+        segment.isPalindrome = 1;
+        return segment;
+    }
 
     if(index == 1){
         if(isOdd){
