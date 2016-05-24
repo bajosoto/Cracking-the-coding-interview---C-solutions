@@ -12,7 +12,7 @@ Design a stack in which in addition to push and pop, there is a function min whi
     + If it is, add this value to the min stack.
 - min() returns peek(stackmin)
 
-´´´´c
+````c
 typedef struct MinStack{
     Stack_t *stack;
     Stack_t *minstack;
@@ -53,5 +53,5 @@ char minMin(MinStack_t *minst){
 char peekMin(MinStack_t *minst){
     return peek(minst->stack);
 }
-´´´´
+````
 *4:29*
