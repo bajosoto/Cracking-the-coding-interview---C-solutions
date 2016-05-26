@@ -52,7 +52,7 @@ void sortStack(Stack_t stack){
     char data;
     while(!isEmpty(stack)){
         data = pop(stack);
-        // From here it's the same as the avobe implementation
+        // From here it's the same as the abovee implementation
         if(!isEmpty(buffer)){
             while(peek(buffer) > data && !isEmpty(buffer))
                 push(stack, pop(buffer));
