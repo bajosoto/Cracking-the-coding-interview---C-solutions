@@ -58,7 +58,7 @@ int balanceBrackets(char *brackets){
 }
 ````
 
-Time complexity: O(*n*)
+Time complexity: O(*n*)  
 Space compexity: O(1)
 
 *15:27*
