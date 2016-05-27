@@ -1,63 +1,57 @@
 // 0:49
-#include "uthash.h"
 
-struct number{
-	int id;
-	UT_hash_handle hh;
-};
-
-// void addNumber(int id) {
-//     struct number *s;
-
-//     s = malloc(sizeof(struct number));
-//     s->id = id;
-//     HASH_ADD_INT( users, id, s );  /* id: name of id field */
-// }
-
-//struct number *findNumber(int id) {
-//    struct users *s;
-
-//    HASH_FIND_INT( users, &id, s );  /* s: output pointer */
-//    return s;
-//}
 
 /**
- * Note: The returned array must be malloced, assume caller calls free().
+ * Solution 1: Assuming no repeated numbers, all positive. Implements a Hash Table with no collision detection.
  */
-struct number *users = NULL;		// Hash Table
-
 int* twoSum(int* nums, int numsSize, int target) {
     int *ret = (int *)malloc(sizeof(int) * 2);
-
-    struct number *n;
     int i;
+    int hash[25536];
+    for(i = 0; i < 25536; i++)
+        hash[i] = -1;
 
     for(i = 0; i < numsSize; i++){
-    	HASH_FIND_INT( users, &id, n);
-    	//n = findNumber(target - nums[i]);
-    	if(n != NULL){
-    		ret[0] = n->id;
+        int otherNumber = target - nums[i];
+    	if(hash[otherNumber] != -1){
+    		ret[0] = hash[otherNumber];
     		ret[1] = i;
+            break;
     	}
     	else{
-    		struct number *s;
-
-    		s = malloc(sizeof(struct number));
-    		s->id = i;
-   			HASH_ADD_INT(users, id, s);
-    		//addNumber(i);
+            hash[nums[i]] = i;
     	}
     }
-
     return ret;
 }
 
 // 1:00
 
+/**
+ * Solution 2: Less efficient implementation. Supports repeated numbers and negative numbers.
+ */
+int* twoSum2(int* nums, int numsSize, int target) {
+    int *ret = (int *)malloc(sizeof(int) * 2);
+    int i, j;
+
+    for(i = 0; i < numsSize; i++){
+        for(j = i + 1; j < numsSize; j++){
+            if(nums[i] + nums[j] == target){
+                ret[0] = i;
+                ret[1] = j;
+            }
+        }
+    }
+    return ret;
+}
+
 int main(){
- 	int numArray[] = {1, 4, 6, 7, 11, 14, 16};
- 	int target = 25;
+ 	int numArray[] = {2, 4, 6, 7, 11, 14, 16};
+ 	int target = 13;
  	int *sum = twoSum(numArray, 7, target);
- 	printf("[%d, %d]\n", numArray[0], numArray[1]);
+    int *sum2 = twoSum2(numArray, 7, target);
+ 	printf("[%d, %d]\n", sum[0], sum[1]);
+    printf("[%d, %d]\n", sum2[0], sum2[1]);
 	return 0;
 }
+
