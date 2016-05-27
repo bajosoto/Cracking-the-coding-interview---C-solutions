@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int balanceBrackets(char *brackets){
+int bracketFlips(char *brackets){
 	int flips = 0;
 	int balance = 0;
 	int length = strlen(brackets);
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
 		return -1;
 	}
 
-	int flipsNeeded = balanceBrackets(argv[1]);
+	int flipsNeeded = bracketFlips(argv[1]);
 	if(flipsNeeded == 0)
 		printf("Brackets are balanced.\n");
 	else if(flipsNeeded == -1)

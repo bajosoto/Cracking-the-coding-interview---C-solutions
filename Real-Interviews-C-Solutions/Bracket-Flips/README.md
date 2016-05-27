@@ -28,7 +28,7 @@ Ex.
 - return *flips* + *balance* / 2
 
 ````c
-int balanceBrackets(char *brackets){
+int bracketFlips(char *brackets){
     int flips = 0;
     int balance = 0;
     int length = strlen(brackets);
