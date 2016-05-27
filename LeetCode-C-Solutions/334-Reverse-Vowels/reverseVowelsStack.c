@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 typedef struct Stack{
-    char *array;
+    char array[1024];
     int index;
 }Stack;
 
@@ -18,13 +18,13 @@ char pop(Stack *stack){
 
 Stack *createStack(){
     Stack *stack = (Stack *)malloc(sizeof(Stack));
-    stack->array = (char *)malloc(sizeof(char) * 1024);
     stack->index = 0;
     return stack;
 }
 
 int isVowel(char letter){
-    if(letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u')
+    if(letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u' ||
+       letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O' || letter == 'U')
         return 1;
     else
         return 0;
@@ -34,8 +34,6 @@ char *reverseVowels(char *s) {
     Stack *stack = createStack();
     int length = strlen(s);
     int i;
-    
-    char *out = (char *)malloc(sizeof(char) * 1024); 
 
     for(i = 0; i < length; i++){
         if(isVowel(s[i]))
@@ -43,15 +41,15 @@ char *reverseVowels(char *s) {
     }
     for(i = 0; i < length; i++){
         if(isVowel(s[i]))
-            out[i] = pop(stack);
-        else
-            out[i] = s[i];
+            s[i] = pop(stack);
     }
-    out[length] = '\0';
-    return out;
+    return s;
 }
 
 int main(int argc, char *argv[]){
-    printf("%s", reverseVowels(argv[1]));
+    if(argc < 2)
+        return -1;
+    printf("original: %s\n", argv[1]);
+    printf("reversed: %s\n", reverseVowels(argv[1]));
     return 0;
 }
