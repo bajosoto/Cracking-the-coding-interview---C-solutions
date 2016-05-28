@@ -39,25 +39,19 @@ void enqueue(Shelter_t *shelter, int animalType, int timestamp, char name){
 
 Node_t *dequeueCat(Shelter_t *shelter){
 	Node_t *pet = popQueue(shelter->cats);
-	if(pet == NULL)
-		printf("Sorry. There's no cats in the shelter at the moment.\n");
 	return pet;
 }
 
 Node_t *dequeueDog(Shelter_t *shelter){
 	Node_t *pet = popQueue(shelter->dogs);
-	if(pet == NULL)
-		printf("Sorry. There's no dogs in the shelter at the moment.\n");
 	return pet;
 }
 
 Node_t *dequeueAny(Shelter_t *shelter){
 	Node_t *cat = peekQueue(shelter->cats);
 	Node_t *dog = peekQueue(shelter->dogs);
-	if(cat == NULL && dog == NULL){
-		printf("Sorry. The shelter is empty at the moment.\n");
+	if(cat == NULL && dog == NULL)
  		return NULL;		
-	}
 	else if(cat != NULL && dog != NULL)
 		return cat->timestamp < dog->timestamp ? dequeueCat(shelter) : dequeueDog(shelter);
 	else if(cat == NULL)
@@ -128,16 +122,22 @@ int main(int argc, char *argv[]){
  						adoptedPet = dequeueCat(myShelter);
  						if(adoptedPet != NULL)
  							printf("You have adopted the cat %c (%d)!\n", adoptedPet->data, adoptedPet->timestamp);
+ 						else
+ 							printf("Sorry. There's no cats in the shelter at the moment.\n");
  						break;
  					case DOG:
  						adoptedPet = dequeueDog(myShelter);
  						if(adoptedPet != NULL)
  							printf("You have adopted the dog %c (%d)!\n", adoptedPet->data, adoptedPet->timestamp);
+ 						else
+ 							printf("Sorry. There's no dogs in the shelter at the moment.\n");
  					 	break;
  					case ANY:
  						adoptedPet = dequeueAny(myShelter);
  						if(adoptedPet != NULL)
  							printf("You have adopted the animal %c (%d)!\n", adoptedPet->data, adoptedPet->timestamp);
+ 						else
+ 							printf("Sorry. The shelter is empty at the moment.\n");
  					 	break;
  					default:
  					 	printf("The shelter only has cats and dogs for adoption!\n");
