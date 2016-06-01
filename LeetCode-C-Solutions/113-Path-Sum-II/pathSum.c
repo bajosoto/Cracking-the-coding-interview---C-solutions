@@ -1,20 +1,15 @@
 #include "Stack.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct TreeNode{
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-}TreeNode_t;
+#include "Tree.h"
 
 
 void findSumPaths(TreeNode_t *node, int sum, int **arrays, int *columnSizes, int *returnSize, Stack_t *stack){
 	if(node == NULL)
 		return;
 	// Add this node to the stack
-	push(stack, node->val);
-	if(node->val == sum && !(node->left) && !(node->right)){
+	push(stack, node->data);
+	if(node->data == sum && !(node->left) && !(node->right)){
 		// Increment the number of paths found counter		
 		*returnSize += 1;
 		// Add stack to a new array
@@ -33,8 +28,8 @@ void findSumPaths(TreeNode_t *node, int sum, int **arrays, int *columnSizes, int
 		// Store size of array in returnSize
 		columnSizes[*returnSize - 1] = buffer->count;		
 	}
-	findSumPaths(node->left, sum - node->val, arrays, columnSizes, returnSize, stack);
-	findSumPaths(node->left, sum - node->val, arrays, columnSizes, returnSize, stack);
+	findSumPaths(node->left, sum - node->data, arrays, columnSizes, returnSize, stack);
+	findSumPaths(node->left, sum - node->data, arrays, columnSizes, returnSize, stack);
 	pop(stack);
 }
 
@@ -52,7 +47,18 @@ int** pathSum(TreeNode_t *root, int sum, int *columnSizes, int *returnSize) {
     return arrays;
 }
 
-int main(){
-
+int main(int argc, char *argv[]){
+	TreeNode_t *root = createTreeNode(8,    createTreeNode(12, createTreeNode(14, createTreeNode(15, NULL, NULL), 
+		 																		  createTreeNode(13, NULL, NULL)),
+															   createTreeNode(10, createTreeNode(11, NULL, NULL),
+															   	 				  createTreeNode(9 , NULL, NULL))),
+		 									createTreeNode(4 , createTreeNode(6 , createTreeNode(7 , NULL, NULL), 
+		 																		  createTreeNode(5 , NULL, NULL)),
+															   createTreeNode(2 , createTreeNode(3 , NULL, NULL),
+															   	 				  createTreeNode(1 , NULL, NULL)))
+										);
+	printf("Tree height: %d\n", getMaxTreeHeight(root));
+	printf("In-order traversal: ");
+	printTreeInOrder(root);
 	return 0;
 }
