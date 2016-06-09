@@ -8,6 +8,7 @@ int addMtxRange(int **matrix, int c1, int r1, int c2, int r2, int maxRows, int m
 	int minR = min(r1, r2);
 	int maxR = max(r1, r2);
 
+	/* Safety check */
 	if(maxC >= maxCols || maxR >= maxRows){
 		// Report some error
 		printf("(%d, %d) is out of range.\n", maxR, maxC);
@@ -21,14 +22,41 @@ int addMtxRange(int **matrix, int c1, int r1, int c2, int r2, int maxRows, int m
 	return sum;
 }
 
-void fastAddMtxRangeInit(int **matrix, int **preCalcd, int maxRows, int maxCols){
-	for(int i = 0; i < maxCols; i++)
-		for(int j = 0; j < maxRows; j++)
-			dest[i][j] = addMtxRange(matrix, 0, 0, i, j);
+/* Returns a 2D array with all precalculated sums from range (0,0) to all other coordinates */
+int **fastAddMtxRangeInit(int **matrix, int maxRows, int maxCols){
+    // Create 2D matrix to store precalculated values
+    int **preCalcd = (int **)malloc(sizeof(int *) * maxRows);
+    for(int i = 0; i < maxRows; i++)
+    	preCalcd[i] = (int *)malloc(sizeof(int) * maxCols);
+
+	for(int i = 0; i < maxRows; i++)
+		for(int j = 0; j < maxCols; j++){
+			preCalcd[i][j] = addMtxRange(matrix, 0, 0, j, i, maxRows, maxCols);
+		}
+	return preCalcd;
 }
 
 int fastAddMtxRange(int **preCalcd, int c1, int r1, int c2, int r2, int maxRows, int maxCols){
+	int sum = 0;
+	int minC = min(c1, c2);
+	int maxC = max(c1, c2);
+	int minR = min(r1, r2);
+	int maxR = max(r1, r2);
 
+	/* Safety check */
+	if(maxC >= maxCols || maxR >= maxRows){
+		// Report some error
+		printf("(%d, %d) is out of range.\n", maxR, maxC);
+		return -1;
+	}
+
+	int largeArea = preCalcd[maxR][maxC];
+	int smallArea = (minR == 0 || minC == 0) ? 0 : preCalcd[minR - 1][minC - 1];
+	int verticalRect = (minC == 0) ? 0 : preCalcd[maxR][minC - 1];
+	int horizRect = (minR == 0) ? 0 : preCalcd[minR - 1][maxC];
+
+	sum = largeArea + smallArea - verticalRect - horizRect;
+	return sum;	
 }
 
 void printMatrix(int **matrix, int maxR, int maxC){
@@ -42,6 +70,7 @@ void printMatrix(int **matrix, int maxR, int maxC){
 }
 
 int main(int argc, char *argv[]){
+	/* Allocate and populate a 2D array */
 	int matrix[4][5] = {{ 1, 3, 5, 7, 8 },
      					{ 3, 7, 3, 6, 2 },
      					{ 5, 9, 2, 5, 7 },
@@ -58,6 +87,7 @@ int main(int argc, char *argv[]){
     int r1;
     int r2;
 
+    /* Request ranges from user */
     printMatrix(mat, 4, 5);
     printf("r1: ");
     scanf("%d", &r1);
@@ -68,11 +98,19 @@ int main(int argc, char *argv[]){
     printf("c2: ");
     scanf("%d", &c2);
 
+    /* Perform sum with first method */
     int ans = addMtxRange(mat, c1, r1, c2, r2, 4, 5);
     if(ans >= 0)
-    	printf("ans = %d\n", ans);
+    	printf("METHOD 1: ans = %d\n", ans);
     else
-    	printf("ans = ERROR\n");
-	return 0;
+    	printf("METHOD 1: ans = ERROR\n");
+
+    /* Perform sum with second method */
+    int **preCalcdBuff = fastAddMtxRangeInit(mat, 4, 5);
+    ans = fastAddMtxRange(preCalcdBuff, c1, r1, c2, r2, 4, 5);  
+    if(ans >= 0)
+    	printf("METHOD 2: ans = %d\n", ans);
+    else
+    	printf("METHOD 2: ans = ERROR\n");	return 0;
 }
 
