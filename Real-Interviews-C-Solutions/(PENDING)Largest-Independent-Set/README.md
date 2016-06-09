@@ -4,7 +4,7 @@ Given a Binary Tree, find size of the Largest Independent Set(LIS) in it. A subs
 
 Example:
 ````
-Consider the following binary tree. The largest independent set(LIS) is {10, 40, 60, 70, 80} and size of the LIS is 5.
+Consider the following binary tree. 
 
           10
         /    \
@@ -14,5 +14,6 @@ Consider the following binary tree. The largest independent set(LIS) is {10, 40,
          /  \
         70   80
 
+The largest independent set(LIS) is {10, 40, 60, 70, 80} and size of the LIS is 5.
 ````
 
